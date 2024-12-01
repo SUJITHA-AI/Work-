@@ -1,0 +1,105 @@
+import React, { useState } from 'react';
+
+const LeaveApplication = ({ leaveTypes, onApply }) => {
+  const [selectedLeaveType, setSelectedLeaveType] = useState('');
+  const [days, setDays] = useState('');
+
+  const handleSubmit = () => {
+    if (selectedLeaveType && days) {
+      onApply(selectedLeaveType, days);
+      setSelectedLeaveType('');
+      setDays('');
+    }
+  };
+
+  return (
+    <div>
+      <h2>Leave Application</h2>
+      <div>
+        <label>
+          Leave Type:
+          <select
+            value={selectedLeaveType}
+            onChange={(e) => setSelectedLeaveType(e.target.value)}
+          >
+            <option value="">Select leave type</option>
+            {leaveTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div>
+        <label>
+          Number of Days:
+          <input
+            type="number"
+            value={days}
+            onChange={(e) => setDays(e.target.value)}
+          />
+        </label>
+      </div>
+      <button onClick={handleSubmit}>Apply</button>
+    </div>
+  );
+};
+
+export default LeaveApplication;
+
+
+
+const LeaveBalance = ({ leaveBalances }) => {
+  return (
+    <div>
+      <h2>Leave Balance</h2>
+      <div>
+        {Object.keys(leaveBalances).map((leaveType) => (
+          <p key={leaveType}>
+            {leaveType}: {leaveBalances[leaveType]} days
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default LeaveBalance;
+
+
+
+import React, { useState } from 'react';
+import LeaveApplication from './components/LeaveApplication';
+import LeaveBalance from './components/LeaveBalance';
+
+const App = () => {
+  const [leaveBalances, setLeaveBalances] = useState({
+    casual: 10,
+    medical: 7,
+  });
+
+  const applyLeave = (leaveType, days) => {
+    if (leaveBalances[leaveType] >= days) {
+      setLeaveBalances((prevBalances) => ({
+        ...prevBalances,
+        [leaveType]: prevBalances[leaveType] - days,
+      }));
+      alert('Leave applied successfully!');
+    } else {
+      alert('Insufficient leave balance.');
+    }
+  };
+
+  const leaveTypes = Object.keys(leaveBalances);
+
+  return (
+    <div>
+      <h1>Leave Management System</h1>
+      <LeaveApplication leaveTypes={leaveTypes} onApply={applyLeave} />
+      <LeaveBalance leaveBalances={leaveBalances} />
+    </div>
+  );
+};
+
+export default App;
