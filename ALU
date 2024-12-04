@@ -1,0 +1,43 @@
+PROGRAM:
+
+Arithmetic Operations:
+
+Addition of two 16 bit numbers:
+
+MOV DPTR,#1020H
+
+MOV A,#15H
+
+MOV B,#25H
+
+ADD A,DPL,
+
+MOV DPL,A
+
+MOV A,B
+
+ADDC A,DPH
+
+MOV DPH,A
+
+END
+
+Subtraction of two 16 bit numbers:
+
+MOV DPTR,#1020H
+
+MOV A,#35H
+
+MOV B,#45H
+
+subb A,DPL,
+
+MOV DPL,A
+
+MOV A,B
+
+subb A,DPH
+
+MOV DPH,A
+
+END
