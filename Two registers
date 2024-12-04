@@ -1,0 +1,33 @@
+To transfer data between two registers in assembly language (e.g., for the 8086 microprocessor), you can use the MOV instruction. Here's an example program:
+
+Example: Transfer data from AX to BX
+
+; Assembly Program to Transfer Data Between Two Registers
+
+section .text
+    global _start   ; Entry point for the program
+
+_start:
+    MOV AX, 0x1234  ; Load data (0x1234) into AX register
+    MOV BX, AX      ; Transfer data from AX to BX register
+
+    ; Optional: Halt program (depending on environment)
+    HLT             ; Stop execution (or use an OS-specific exit mechanism)
+
+Explanation:
+
+1. MOV AX, 0x1234: Loads the value 0x1234 into the register AX.
+
+
+2. MOV BX, AX: Copies the contents of AX into BX.
+
+Output
+
+After executing the program:
+
+AX (Source Register): 0x1234
+
+BX (Destination Register): 0x1234
+
+
+The value in AX has been successfully transferred to BX.
