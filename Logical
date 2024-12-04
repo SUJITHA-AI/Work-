@@ -1,0 +1,71 @@
+Logical Operations:
+
+Bitwise AND:
+
+ORG 0x0000;
+MAIN: MOV A, #0x0F;
+MOV B, #0x3C;
+ANL A, B;
+
+END;
+
+Bitwise OR:
+
+ORG 0x0000;
+
+MAIN:MOV A, #0x27;
+MOV B, #0x35;
+
+ORL A, B ;
+
+END;
+
+Bitwise NOT:
+
+ORG 0x0000;
+
+MAIN:MOV A, #0x27;
+
+CPL A ;
+
+END;
+
+Bitwise NAND:
+
+ORG 0x0000;
+
+MAIN: MOV A, #0x0F;
+
+MOV B, #0x3C;
+
+ANL A, B;
+
+CPL A;
+
+END;
+
+Bitwise NOR:
+
+ORG 0x0000;
+
+MAIN MOV A, #0x27;
+
+MOV B, #0x35;
+
+ORL A, B ;
+
+CPL A
+
+END;
+
+Bitwise XOR:
+
+ORG 0x0000;
+
+MAIN:MOV A, #0x0F; L
+
+MOV B, #0x3C
+
+XRL A, B ;
+
+END;
